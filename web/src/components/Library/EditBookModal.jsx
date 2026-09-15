@@ -55,17 +55,21 @@ function EditBookModal(props) {
             status: readingStatus,
         }).then(
             response => {
-                const fieldsToSave = fields.map(f => ({
-                    field_id: f.id,
-                    value: fieldValues[f.id] || null,
-                }));
                 if (fields.length > 0) {
+                    const fieldsToSave = fields.map(f => ({
+                        field_id: f.id,
+                        value: fieldValues[f.id] || null,
+                    }));
+
                     FieldsService.saveBookValues(props.id, fieldsToSave).then(
                         response => {
                             props.close(false);
                             props.onSuccess();
                         },
                     );
+                } else {
+                    props.close(false);
+                    props.onSuccess();
                 }
             },
             error => {
