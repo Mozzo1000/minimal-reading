@@ -75,12 +75,18 @@ function AddBookManualModal(props) {
                 total_pages: totalPages,
                 reading_status: readingList}).then(
             response => {
+                if (fields.length == 0) {
+                    props.close(false);
+                    props.onSuccess();
+                    resetState();
+                    return;
+                }
                 const bookId = response.data.id;
                 const fieldsToSave = fields.map(f => ({
                     field_id: f.id,
                     value: fieldValues[f.id] || null,
                 }));
-                if (bookId && fields.length > 0) {
+                if (bookId) {
                     FieldsService.saveBookValues(bookId, fieldsToSave).then(
                         response => {
                             props.close(false);
