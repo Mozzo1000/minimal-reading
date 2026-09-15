@@ -325,7 +325,7 @@
         "end": "Fecha de fin"
     },
     "controls": {
-        "grid": "Grid view",
-        "list": "List view"
+        "grid": "Vista de cuadrícula",
+        "list": "Vista de lista"
     }
 }
